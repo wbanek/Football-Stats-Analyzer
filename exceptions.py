@@ -1,8 +1,6 @@
-class FootballDataError(Exception):
-    """Bazowy wyjątek dla błędów aplikacji."""
-
-class PlayerNotFoundError(FootballDataError):
-    """Gdy nie znaleziono zawodnika."""
-
-class InvalidStatFormatError(FootballDataError):
-    """Gdy statystyki zawodnika mają nieprawidłowy format."""
+class InvalidStatFormatError(Exception):
+    """Błąd nieprawidłowego formatu statystyk."""
+class PlayerNotFoundError(Exception):
+    """Gdy zawodnik nie istnieje w danych."""
+class DataFileNotFoundError(Exception):
+    """Gdy pliku CSV nie znaleziono."""

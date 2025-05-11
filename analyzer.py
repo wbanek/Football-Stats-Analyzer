@@ -1,36 +1,63 @@
 import csv
-import logging
-from exceptions import InvalidStatFormatError, PlayerNotFoundError
+from exceptions import PlayerNotFoundError, InvalidStatFormatError, DataFileNotFoundError
 
-def find_player_by_name(players, name):
-    for player in players:
-        if player["name"].lower() == name.lower():
-            return player
-    raise PlayerNotFoundError(f"Nie znaleziono zawodnika o imieniu: {name}")
-
-def load_player_data(filepath):
-    players = []
-    rejected = []  # tu zapisujemy zawodników z błędnymi danymi
-
+def _load_raw_rows(path):
     try:
-        with open(filepath, newline='', encoding='utf-8') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                try:
-                    row['goals'] = int(row.get('goals', 0) or 0)
-                    row['assists'] = int(row.get('assists', 0) or 0)
-                    row['matches_played'] = int(row.get('matches_played', 0) or 0)
-                    players.append(row)
-                except (ValueError, KeyError) as e:
-                    name = row.get('name', '[brak imienia]')
-                    rejected.append((name, type(e).__name__, str(e)))
-                    logging.warning(f"Błąd w danych zawodnika {name}: {e}")
-                    continue
-    except FileNotFoundError:
-        print(f"Nie znaleziono pliku: {filepath}")
-        raise
+        with open(path, newline="", encoding="utf-8") as f:
+            return list(csv.DictReader(f))
+    except OSError as e:
+        raise DataFileNotFoundError(f"Nie znaleziono pliku: {path}") from e
 
-    return players, rejected
+def get_player_stats(path, name):
+    """
+    Ładuje CSV, szuka wiersza o danym name i konwertuje statystyki.
+    Jeśli któryś krok się nie uda – rzuca wyjątek.
+    """
+    rows = _load_raw_rows(path)
+    for row in rows:
+        if row.get("name", "").strip().lower() == name.strip().lower():
+            # mamy wiersz – próbujemy skonwertować
+            try:
+                goals = int(row.get("goals", "") or 0)
+            except ValueError as e:
+                raise InvalidStatFormatError(f"{name}: niepoprawna wartość w polu 'goals' ({row.get('goals')})") from e
+            try:
+                assists = int(row.get("assists", "") or 0)
+            except ValueError as e:
+                raise InvalidStatFormatError(f"{name}: niepoprawna wartość w polu 'assists' ({row.get('assists')})") from e
+            try:
+                matches = int(row.get("matches_played", "") or 0)
+            except ValueError as e:
+                raise InvalidStatFormatError(f"{name}: niepoprawna wartość w polu 'matches_played' ({row.get('matches_played')})") from e
 
-def get_top_scorers(players, top_n=3):
-    return sorted(players, key=lambda p: p['goals'], reverse=True)[:top_n]
+            # dodatkowa walidacja
+            if matches == 0 and (goals>0 or assists>0):
+                raise InvalidStatFormatError(f"{name}: ma {goals} goli i {assists} asyst, ale zero meczów")
+
+            # wszystko ok
+            return {
+                "name": name,
+                "team": row.get("team",""),
+                "goals": goals,
+                "assists": assists,
+                "matches_played": matches
+            }
+
+    # jeśli nie znaleziono
+    raise PlayerNotFoundError(f"Nie znaleziono zawodnika: {name}")
+
+def get_top_scorers(path, top_n=3):
+    """
+    Zwraca listę top_n w postaci tych samych słowników co get_player_stats,
+    pomijając rekordy z błędami (rzuca wyjątki, które GUI może łapać).
+    """
+    rows = _load_raw_rows(path)
+    stats = []
+    for row in rows:
+        name = row.get("name","").strip()
+        try:
+            stats.append(get_player_stats(path, name))
+        except InvalidStatFormatError:
+            # pomijamy tylko te z błędami formatu, ale nie przerywamy
+            continue
+    return sorted(stats, key=lambda p: p["goals"], reverse=True)[:top_n]
