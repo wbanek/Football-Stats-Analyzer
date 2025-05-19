@@ -1,3 +1,4 @@
+# To jest plik z danymi piłkarzy do projektu Football Stats Analyzer. Rekordy 3,5,7,8,14,15 zawierają błędy lub niespójności
 id,name,team,goals,assists,matches_played
 1,Robert Lewandowski,Barcelona,23,7,30
 2,Lionel Messi,Inter Miami,21,12,28
