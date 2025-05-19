@@ -3,7 +3,7 @@ import customtkinter as ctk
 import logging
 
 from analyzer import get_player_stats, get_top_scorers
-from exceptions import PlayerNotFoundError, InvalidStatFormatError, DataFileNotFoundError
+from exceptions import PlayerNotFoundError, InvalidStatFormatError, DataFileNotFoundError, GoalsFormatError, AssistsFormatError, MatchesPlayedFormatError
 
 # logi
 logging.basicConfig(filename="logs/error.log", level=logging.ERROR)
@@ -53,6 +53,22 @@ def clear_all():
     result_label.configure(text="")
     error_label.configure(text="")
 
+def throw_test_exception():
+    import random
+    exceptions = [
+        ZeroDivisionError("Przykładowy ZeroDivisionError"),
+        KeyError("Przykładowy KeyError"),
+        GoalsFormatError("Przykładowy GoalsFormatError"),
+        AssistsFormatError("Przykładowy AssistsFormatError"),
+        MatchesPlayedFormatError("Przykładowy MatchesPlayedFormatError"),
+        PlayerNotFoundError("Przykładowy PlayerNotFoundError"),
+    ]
+    exc = random.choice(exceptions)
+    try:
+        raise exc
+    except Exception as e:
+        handle_error(e)
+
 # --- budowa GUI ---
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
@@ -73,6 +89,8 @@ ctk.CTkButton(root, text="Szukaj zawodnika", command=search_player, width=200)\
 ctk.CTkButton(root, text="Top 3 strzelców", command=show_top_scorers, width=200)\
     .pack(pady=10)
 ctk.CTkButton(root, text="Wyczyść", command=clear_all, width=200)\
+    .pack(pady=10)
+ctk.CTkButton(root, text="Rzuć testowy wyjątek", command=throw_test_exception, width=200)\
     .pack(pady=10)
 
 result_frame = ctk.CTkFrame(root, corner_radius=10, border_width=2, border_color="gray")

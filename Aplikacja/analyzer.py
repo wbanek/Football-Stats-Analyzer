@@ -1,5 +1,7 @@
 import csv
-from exceptions import PlayerNotFoundError, InvalidStatFormatError, DataFileNotFoundError
+from exceptions import (
+    InvalidStatFormatError, PlayerNotFoundError, DataFileNotFoundError, GoalsFormatError, AssistsFormatError, MatchesPlayedFormatError
+)
 
 def _load_raw_rows(path):
     try:
@@ -20,15 +22,15 @@ def get_player_stats(path, name):
             try:
                 goals = int(row.get("goals", "") or 0)
             except ValueError as e:
-                raise InvalidStatFormatError(f"{name}: niepoprawna wartość w polu 'goals' ({row.get('goals')})") from e
+                raise GoalsFormatError(f"{name}: niepoprawna wartość w polu 'goals' ({row.get('goals')})") from e
             try:
                 assists = int(row.get("assists", "") or 0)
             except ValueError as e:
-                raise InvalidStatFormatError(f"{name}: niepoprawna wartość w polu 'assists' ({row.get('assists')})") from e
+                raise AssistsFormatError(f"{name}: niepoprawna wartość w polu 'assists' ({row.get('assists')})") from e
             try:
                 matches = int(row.get("matches_played", "") or 0)
             except ValueError as e:
-                raise InvalidStatFormatError(f"{name}: niepoprawna wartość w polu 'matches_played' ({row.get('matches_played')})") from e
+                raise MatchesPlayedFormatError(f"{name}: niepoprawna wartość w polu 'matches_played' ({row.get('matches_played')})") from e
 
             # dodatkowa walidacja
             if matches == 0 and (goals>0 or assists>0):
@@ -48,16 +50,21 @@ def get_player_stats(path, name):
 
 def get_top_scorers(path, top_n=3):
     """
-    Zwraca listę top_n w postaci tych samych słowników co get_player_stats,
-    pomijając rekordy z błędami (rzuca wyjątki, które GUI może łapać).
+    Zwraca listę w postaci tych samych słowników co get_player_stats,
+    pomijając rekordy z błędami
     """
     rows = _load_raw_rows(path)
-    stats = []
+    valid_players = []
     for row in rows:
-        name = row.get("name","").strip()
+        name = row.get("name", "").strip()
         try:
-            stats.append(get_player_stats(path, name))
-        except InvalidStatFormatError:
-            # pomijamy tylko te z błędami formatu, ale nie przerywamy
+            player = get_player_stats(path, name)
+            valid_players.append(player)
+        except (
+            GoalsFormatError,
+            AssistsFormatError,
+            MatchesPlayedFormatError,
+            InvalidStatFormatError
+        ) as e:
             continue
-    return sorted(stats, key=lambda p: p["goals"], reverse=True)[:top_n]
+    return sorted(valid_players, key=lambda p: p["goals"], reverse=True)[:top_n]

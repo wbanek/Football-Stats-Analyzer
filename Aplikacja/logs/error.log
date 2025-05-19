@@ -1,3 +1,58 @@
 ERROR:root:InvalidStatFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
 ERROR:root:InvalidStatFormatError: Kylian Mbappe: ma 22 goli i 8 asyst, ale zero meczów
 ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: Daniel
+ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: Linoell Messi
+ERROR:root:InvalidStatFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:InvalidStatFormatError: Kylian Mbappe: ma 22 goli i 8 asyst, ale zero meczów
+ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: Daniel Kubiela
+ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: Daniel Kubiela
+ERROR:root:InvalidStatFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:KeyError: 'Przykładowy KeyError'
+ERROR:root:ZeroDivisionError: Przykładowy ZeroDivisionError
+ERROR:root:ZeroDivisionError: Przykładowy ZeroDivisionError
+ERROR:root:KeyError: 'Przykładowy KeyError'
+ERROR:root:ZeroDivisionError: Przykładowy ZeroDivisionError
+ERROR:root:MatchesPlayedFormatError: Przykładowy MatchesPlayedFormatError
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: 
+ERROR:root:MatchesPlayedFormatError: Przykładowy MatchesPlayedFormatError
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: 
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:AssistsFormatError: Przykładowy AssistsFormatError
+ERROR:root:ZeroDivisionError: Przykładowy ZeroDivisionError
+ERROR:root:PlayerNotFoundError: Przykładowy PlayerNotFoundError
+ERROR:root:ZeroDivisionError: Przykładowy ZeroDivisionError
+ERROR:root:MatchesPlayedFormatError: Przykładowy MatchesPlayedFormatError
+ERROR:root:AssistsFormatError: Przykładowy AssistsFormatError
+ERROR:root:KeyError: 'Przykładowy KeyError'
+ERROR:root:PlayerNotFoundError: Przykładowy PlayerNotFoundError
+ERROR:root:KeyError: 'Przykładowy KeyError'
+ERROR:root:AssistsFormatError: Przykładowy AssistsFormatError
+ERROR:root:AssistsFormatError: Przykładowy AssistsFormatError
+ERROR:root:AssistsFormatError: Przykładowy AssistsFormatError
+ERROR:root:AssistsFormatError: Przykładowy AssistsFormatError
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:MatchesPlayedFormatError: Przykładowy MatchesPlayedFormatError
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: 
+ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: 
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:GoalsFormatError: Przykładowy GoalsFormatError
+ERROR:root:KeyError: 'Przykładowy KeyError'
+ERROR:root:PlayerNotFoundError: Przykładowy PlayerNotFoundError
+ERROR:root:KeyError: 'Przykładowy KeyError'
+ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: 
+ERROR:root:AssistsFormatError: Eden Hazard: niepoprawna wartość w polu 'assists' (three)
+ERROR:root:AssistsFormatError: Przykładowy AssistsFormatError
