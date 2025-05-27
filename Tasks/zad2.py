@@ -1,5 +1,3 @@
-import logging
-
 # ------------------------------------------------------------------------------------
 # TODO: zdefiniuj tu własny wyjątek UnsupportedOperationError oraz InvalidNumberError
 # ------------------------------------------------------------------------------------
@@ -55,7 +53,6 @@ def main():
         except Exception as e:
             # TODO: złap konkretne wyjątki (InvalidNumberError, ZeroDivisionError, UnsupportedOperationError)
             print(f"Błąd: {e}")
-            logging.exception("Błąd w kalkulatorze")
             continue
         else:
             print(f"Wynik: {result}")

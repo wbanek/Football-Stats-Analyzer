@@ -62,3 +62,9 @@ ERROR:root:KeyError: 'Przykładowy KeyError'
 ERROR:root:MatchesPlayedFormatError: Przykładowy MatchesPlayedFormatError
 ERROR:root:MatchesPlayedFormatError: Przykładowy MatchesPlayedFormatError
 ERROR:root:PlayerNotFoundError: Nie znaleziono zawodnika: 
+ERROR:root:GoalsFormatError: Cristiano Ronaldo: niepoprawna wartość w polu 'goals' (twenty)
+ERROR:root:InvalidStatFormatError: Kylian Mbappe: ma 22 goli i 8 asyst, ale zero meczów
+ERROR:root:MatchesPlayedFormatError: Przykładowy MatchesPlayedFormatError
+ERROR:root:PlayerNotFoundError: Przykładowy PlayerNotFoundError
+ERROR:root:ZeroDivisionError: Przykładowy ZeroDivisionError
+ERROR:root:MatchesPlayedFormatError: Przykładowy MatchesPlayedFormatError

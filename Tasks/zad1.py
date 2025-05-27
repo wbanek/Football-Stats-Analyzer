@@ -1,5 +1,3 @@
-import logging
-
 # ------------------------------------------------------------------------
 # TODO: zdefiniuj własny wyjątek EmptyInputError
 # ------------------------------------------------------------------------
@@ -27,7 +25,6 @@ def main():
         except Exception as e:
             # TODO: złapać EmptyInputError i ewentualnie inne
             print(f"Błąd: {e}")
-            logging.exception("Błąd w word_counter")
         else:
             print(f"Liczba słów: {count}\n")
         finally:
